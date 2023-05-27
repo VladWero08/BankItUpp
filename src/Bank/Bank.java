@@ -6,6 +6,7 @@ import Person.Employee;
 import Transactions.Transaction;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -81,12 +82,18 @@ public class Bank {
     public void removeAccount(Long accountID){
         if(this.serviceAccounts.containsKey(accountID)){
             Account deletedAccount = this.serviceAccounts.remove(accountID);
+
+            // Take the customer associated with that account, get the list of accounts
+            // remove the desired account and update its account
+            ArrayList<Account> userAccounts = this.customerAccounts.get(deletedAccount.getCustomerID()).getAccounts();
+            userAccounts.remove(accountID);
+            this.customerAccounts.get(deletedAccount.getCustomerID()).setAccounts(userAccounts);
+
             this.removeTransactionsAssociatedWithAccount(deletedAccount);
 
             deletedAccount = null;
         }
     }
-
     public void removeAccountAssociatedWithCustomer(Customer deletedCustomer){
         for(Account account: deletedCustomer.getAccounts()){
             // If the account actually exists

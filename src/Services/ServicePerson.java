@@ -142,8 +142,10 @@ public class ServicePerson {
                     }
 
                     bank.getCustomerAccounts().get(customerID).setFirstName(firstName);
-                    modifyPersons.updateTableRow("person", customerID.intValue(), "firstName", firstName);
+                    modifyPersons.updateTableRow("person", customerID.intValue(), "firstName", "string", firstName);
                     backLog.writeLog("Updated customer's " + customerID + " first name");
+
+                    editChoice = "exit";
                     break;
 
                 case "2":
@@ -155,8 +157,10 @@ public class ServicePerson {
                     }
 
                     bank.getCustomerAccounts().get(customerID).setLastName(lastName);
-                    modifyPersons.updateTableRow("person", customerID.intValue(), "lastName", lastName);
+                    modifyPersons.updateTableRow("person", customerID.intValue(), "lastName", "string", lastName);
                     backLog.writeLog("Updated customer's " + customerID + " last name");
+
+                    editChoice = "exit";
                     break;
 
                 case "3":
@@ -168,8 +172,10 @@ public class ServicePerson {
                     }
 
                     bank.getCustomerAccounts().get(customerID).setEmail(email);
-                    modifyPersons.updateTableRow("person", customerID.intValue(), "email", email);
+                    modifyPersons.updateTableRow("person", customerID.intValue(), "email", "string", email);
                     backLog.writeLog("Updated customer's " + customerID + " email");
+
+                    editChoice = "exit";
                     break;
 
                 case "4":
@@ -181,8 +187,10 @@ public class ServicePerson {
                     }
 
                     bank.getCustomerAccounts().get(customerID).setPhoneNumber(phoneNumber);
-                    modifyPersons.updateTableRow("person", customerID.intValue(), "phoneNumber", phoneNumber);
+                    modifyPersons.updateTableRow("person", customerID.intValue(), "phoneNumber", "string", phoneNumber);
                     backLog.writeLog("Updated customer's " + customerID + " phone number");
+
+                    editChoice = "exit";
                     break;
 
                 case "5":
@@ -192,10 +200,11 @@ public class ServicePerson {
                         System.out.print("Income: ");
                         income = scanner.nextFloat();
                     }
-
                     bank.getCustomerAccounts().get(customerID).setIncome(income);
-                    modifyPersons.updateTableRow("person", customerID.intValue(), "income", income.toString());
+                    modifyPersons.updateTableRow("person", customerID.intValue(), "income", "float", income.toString());
                     backLog.writeLog("Updated customer's " + customerID + " income");
+
+                    editChoice = "exit";
                     break;
 
                 case "6":
@@ -207,13 +216,13 @@ public class ServicePerson {
                     }
 
                     bank.getCustomerAccounts().get(customerID).setGender(gender);
-                    modifyPersons.updateTableRow("person", customerID.intValue(), "gender", gender);
+                    modifyPersons.updateTableRow("person", customerID.intValue(), "gender", "string", gender);
                     backLog.writeLog("Updated customer's " + customerID + " gender");
+
+                    editChoice = "exit";
                     break;
+
                 case "exit":
-                    break;
-                default:
-                    System.out.print("Invalid! Try again: ");
                     break;
             }
         }

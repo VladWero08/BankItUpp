@@ -15,8 +15,12 @@ public class ModifyDB {
         return modifySingleton;
     }
 
-    public void updateTableRow(String tableName, int rowID, String columnName, String columnNewValue) throws SQLException {
-        String SQL_stmt = "UPDATE " + tableName + " set " + columnName + " = " + columnNewValue + "where id = " + rowID;
+    public void updateTableRow(String tableName, int rowID, String columnName, String columnDataType, String columnNewValue) throws SQLException {
+        if(columnDataType == "string"){
+            columnNewValue = "\"" + columnNewValue + "\"";
+        }
+
+        String SQL_stmt = "UPDATE " + tableName + " SET " + columnName + " = " + columnNewValue + " WHERE id = " + rowID;
         PreparedStatement stmt = DB_conn.prepareStatement(SQL_stmt);
         stmt.execute();
     }

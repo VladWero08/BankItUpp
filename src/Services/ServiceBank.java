@@ -99,18 +99,21 @@ public class ServiceBank {
                         customerReadID = scanner.nextLong();
                     }
                     servicePerson.displaySingleCustomer((int) customerReadID);
+                    break;
 
                 // Edit customer's details
                 case "5":
                     Long customerEditID;
-                    System.out.print("Enter the ID of the customer you want to delete:");
+                    System.out.print("Enter the ID of the customer you want to edit:");
                     customerEditID = scanner.nextLong();
 
                     while(bank.getCustomerAccounts().get(customerEditID) == null){
                         System.out.print("Invalid ID! Try again: ");
+                        System.out.println("mamaaaa");
                         customerEditID = scanner.nextLong();
                     }
                     servicePerson.updateSingleCustomer(customerEditID);
+                    break;
 
                 // Delete a specific customer
                 case "6":
@@ -123,6 +126,7 @@ public class ServiceBank {
                         customerDeleteID = scanner.nextLong();
                     }
                     servicePerson.deleteSingleCustomer(customerDeleteID);
+                    break;
 
                 case "exit":
                     break;
@@ -182,6 +186,7 @@ public class ServiceBank {
                 case "3":
                     Customer customer = bank.getCustomerAccounts().get(customerID);
                     for(Account acc : customer.getAccounts()){
+                        System.out.println("eeey");
                         // If the account is savings, get that entry from the database
                         if(acc instanceof SavingsAccount){ read_singleton.readSingleSavingsAccount(acc.getAccountID().intValue());}
                         // Else, get the account from the program
